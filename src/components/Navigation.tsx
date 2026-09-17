@@ -8,19 +8,15 @@ const Navigation = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
-  };
-
-  const openMenu = () => {
-    setIsOpen(true);
+    document.body.style.overflow = 'auto';
   };
 
   const handleMenuButtonClick = () => {
-    if (isOpen) {
-      closeMenu();
-      return;
-    }
-
-    openMenu();
+    setIsOpen((prev) => {
+      const next = !prev;
+      document.body.style.overflow = next ? 'hidden' : 'auto';
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -93,7 +89,7 @@ const Navigation = () => {
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
             onClick={handleMenuButtonClick}
-            className="md:hidden relative z-[60] text-cream focus:outline-none"
+            className="md:hidden relative z-[120] pointer-events-auto touch-manipulation text-cream focus:outline-none"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
