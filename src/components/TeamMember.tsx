@@ -101,7 +101,7 @@ const TeamMember = ({ member, isExpanded, onExpand }: TeamMemberProps) => {
               type="button"
               aria-label={`Close ${member.name} details`}
               onClick={onExpand}
-              className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 transition-colors duration-300 hover:bg-white/20"
+              className="absolute right-4 top-3 z-10 rounded-full bg-white/10 p-2 transition-colors duration-300 hover:bg-white/20 sm:top-4"
             >
               <X size={24} className="text-cream" />
             </button>

@@ -19,7 +19,7 @@ const Preloader = () => {
         scale: 1.1,
         duration: 0.6,
         ease: 'power4.in',
-        delay: 1.8,
+        delay: 1.2,
       })
       .to(containerRef.current, {
         opacity: 0,
@@ -27,6 +27,12 @@ const Preloader = () => {
         duration: 0.4,
         ease: 'power2.out',
       });
+
+    gsap.fromTo(
+      '.preloader-bar-fill',
+      { width: '0%' },
+      { width: '100%', duration: 1.5, ease: 'power2.inOut', delay: 0.1 }
+    );
   }, []);
 
   return (
@@ -38,11 +44,8 @@ const Preloader = () => {
         <div className="text-6xl md:text-8xl font-display font-bold text-cream tracking-tight">
           TECH <span className="text-[#6B66DA]">CUBE</span>
         </div>
-        <div className="mt-4 text-cream/40 text-sm tracking-[0.3em] uppercase">
-          Loading Experience
-        </div>
-        <div className="mt-8 w-48 h-[1px] bg-violet/30 mx-auto overflow-hidden">
-          <div className="w-full h-full bg-violet animate-pulse" />
+        <div className="mt-8 w-52 h-1.5 overflow-hidden rounded-full bg-violet/20 mx-auto">
+          <div className="preloader-bar-fill h-full rounded-full bg-violet" />
         </div>
       </div>
     </div>
