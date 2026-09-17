@@ -36,7 +36,7 @@ const Preloader = () => {
     >
       <div ref={textRef} className="text-center">
         <div className="text-6xl md:text-8xl font-display font-bold text-cream tracking-tight">
-          TECH <span className="bg-violet px-1 text-cream">CUBE</span>
+          TECH <span className="text-[#6B66DA]">CUBE</span>
         </div>
         <div className="mt-4 text-cream/40 text-sm tracking-[0.3em] uppercase">
           Loading Experience

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Lenis from 'lenis';
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
@@ -12,7 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Marquee from './components/Marquee';
 import ProjectDetail from './components/ProjectDetail';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 const HomePage = () => (
   <>
@@ -30,32 +29,43 @@ const HomePage = () => (
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2500);
 
-    return () => {
-      clearTimeout(timer);
-      lenis.destroy();
-    };
+    return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const workPosition = sessionStorage.getItem('techcube-return-to-work');
+
+      if (!workPosition) {
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        });
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: Number(workPosition),
+          left: 0,
+          behavior: 'auto',
+        });
+      });
+
+      sessionStorage.removeItem('techcube-return-to-work');
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    });
+  }, [location.pathname]);
 
   return (
     <>

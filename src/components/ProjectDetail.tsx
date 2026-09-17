@@ -1,25 +1,27 @@
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const project = projects.find((item) => item.id === Number(projectId));
 
   if (!project) {
-    return <Navigate to="/#work" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (
     <article className="min-h-screen bg-primary px-6 pb-24 pt-32 md:px-12 md:pt-40">
       <div className="mx-auto max-w-7xl">
-        <Link
-          to="/#work"
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
           className="group inline-flex items-center gap-2 text-sm text-cream/50 transition-colors hover:text-cream"
         >
           <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
           Back to selected work
-        </Link>
+        </button>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-20">
           <div>

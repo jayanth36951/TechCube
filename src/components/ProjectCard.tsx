@@ -36,12 +36,20 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     });
   };
 
+  const handleProjectClick = () => {
+    const workSection = document.getElementById('work');
+    const workY = workSection ? workSection.getBoundingClientRect().top + window.scrollY : window.scrollY;
+
+    sessionStorage.setItem('techcube-return-to-work', String(Math.max(workY, 0)));
+  };
+
   return (
     <Link
       to={`/work/${project.id}`}
       ref={cardRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleProjectClick}
       className="group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-violet/40 transition-all duration-500 cursor-pointer"
     >
       <div

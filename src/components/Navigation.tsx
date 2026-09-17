@@ -58,7 +58,7 @@ const Navigation = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="text-2xl font-display font-bold tracking-tight text-cream">
-            TECH <span className="bg-violet px-0.5 text-cream">CUBE</span>
+            TECH <span className="text-[#6B66DA]">CUBE</span>
           </div>
 
           <div className="hidden md:flex items-center gap-10">

@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="text-center md:text-left">
           <div className="font-display text-2xl font-bold text-cream">
-            TECH <span className="bg-violet px-0.5 text-cream">CUBE</span>
+            TECH <span className="text-[#6B66DA]">CUBE</span>
           </div>
           <p className="mt-2 text-sm text-cream/30">Digital Experiences - Est. 2025</p>
         </div>
