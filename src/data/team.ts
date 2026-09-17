@@ -74,7 +74,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
-    name: 'Meera',
+    name: 'Shaikh Nagulmeera',
     role: 'Bot & Automation Developer',
     accent: 'green',
     accentColor: '#A3E635',
