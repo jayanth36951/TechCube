@@ -7,7 +7,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
-  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const openMenu = () => setIsOpen(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +44,7 @@ const Navigation = () => {
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
 
@@ -77,7 +78,7 @@ const Navigation = () => {
             type="button"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
-            onClick={toggleMenu}
+            onClick={isOpen ? closeMenu : openMenu}
             className="md:hidden text-cream focus:outline-none z-50 relative"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
