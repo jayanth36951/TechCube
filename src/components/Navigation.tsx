@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import gsap from 'gsap';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +10,7 @@ const Navigation = () => {
     document.body.style.overflow = 'auto';
   };
 
-  const handleMenuButtonClick = () => {
+  const toggleMenu = () => {
     setIsOpen((prev) => {
       const next = !prev;
       document.body.style.overflow = next ? 'hidden' : 'auto';
@@ -35,22 +34,6 @@ const Navigation = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      gsap.fromTo(
-        '.mobile-menu',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
-      );
-      gsap.fromTo(
-        '.mobile-menu-item',
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.2 }
-      );
-    } else {
-      document.body.style.overflow = 'auto';
-    }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -88,7 +71,7 @@ const Navigation = () => {
             type="button"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
-            onClick={handleMenuButtonClick}
+            onClick={toggleMenu}
             className="md:hidden relative z-[120] pointer-events-auto touch-manipulation text-cream focus:outline-none"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -101,7 +84,7 @@ const Navigation = () => {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation menu"
-        className={`mobile-menu fixed inset-0 z-40 bg-primary/98 backdrop-blur-xl flex items-center justify-center transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-primary/98 backdrop-blur-xl flex items-center justify-center transition-opacity duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={(event) => {
@@ -110,12 +93,12 @@ const Navigation = () => {
           }
         }}
       >
-        <div className="flex flex-col items-center gap-8 text-4xl md:text-6xl font-display font-bold">
+        <div className="flex flex-col items-center gap-8 text-4xl font-display font-bold">
           {navLinks.map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="mobile-menu-item text-cream/80 hover:text-cream transition-colors duration-300 hover:scale-110 transform"
+              className="text-cream/80 hover:text-cream transition-colors duration-300"
               onClick={closeMenu}
             >
               {link}
