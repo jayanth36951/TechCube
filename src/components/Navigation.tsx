@@ -6,8 +6,22 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const closeMenu = () => setIsOpen(false);
-  const openMenu = () => setIsOpen(true);
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  const openMenu = () => {
+    setIsOpen(true);
+  };
+
+  const handleMenuButtonClick = () => {
+    if (isOpen) {
+      closeMenu();
+      return;
+    }
+
+    openMenu();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,8 +92,8 @@ const Navigation = () => {
             type="button"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
-            onClick={isOpen ? closeMenu : openMenu}
-            className="md:hidden text-cream focus:outline-none z-50 relative"
+            onClick={handleMenuButtonClick}
+            className="md:hidden relative z-[60] text-cream focus:outline-none"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
