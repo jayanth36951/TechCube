@@ -7,6 +7,20 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = projects.find((item) => item.id === Number(projectId));
 
+  const handleBack = () => {
+    const savedPosition = sessionStorage.getItem('techcube-return-to-work');
+
+    if (savedPosition) {
+      sessionStorage.setItem('techcube-return-to-work', savedPosition);
+    } else {
+      const workSection = document.getElementById('work');
+      const workY = workSection ? workSection.getBoundingClientRect().top + window.scrollY : 0;
+      sessionStorage.setItem('techcube-return-to-work', String(Math.max(workY, 0)));
+    }
+
+    navigate('/');
+  };
+
   if (!project) {
     return <Navigate to="/" replace />;
   }
@@ -16,7 +30,7 @@ const ProjectDetail = () => {
       <div className="mx-auto max-w-7xl">
         <button
           type="button"
-          onClick={() => navigate(-1)}
+          onClick={handleBack}
           className="group inline-flex items-center gap-2 text-sm text-cream/50 transition-colors hover:text-cream"
         >
           <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
@@ -40,8 +54,14 @@ const ProjectDetail = () => {
         </div>
 
         <div
-          className="mt-16 aspect-[16/9] w-full rounded-2xl border border-white/10 bg-cover bg-center md:mt-24"
-          style={{ backgroundImage: `url(${project.image})` }}
+          className={`mt-16 aspect-[16/9] w-full rounded-2xl border border-white/10 md:mt-24 ${
+            project.title === 'Heritage Archive' ? 'project-heritage-animated-detail' : ''
+          }`}
+          style={
+            project.title === 'Heritage Archive'
+              ? undefined
+              : { backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+          }
           role="img"
           aria-label={`${project.title} project preview`}
         />

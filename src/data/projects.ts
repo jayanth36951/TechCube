@@ -43,6 +43,7 @@ export const projects = [
     description: 'Digital archive with interactive storytelling and timeline visualization.',
     image: 'https://images.unsplash.com/photo-1544923408-75d5c7ecf4b2?auto=format&fit=crop&q=80&w=800&h=600',
     tags: ['Education', 'UX', 'Storytelling'],
+    background: 'project-heritage-animated',
   },
   {
     id: 6,
@@ -52,5 +53,6 @@ export const projects = [
     description: 'High-performance e-commerce platform with custom checkout and analytics.',
     image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800&h=600',
     tags: ['E-Commerce', 'Dev', 'Analytics'],
+    background: 'bg-gradient-to-br from-cyan-500/10 via-[#14182a] to-[#0d1117]',
   },
 ];

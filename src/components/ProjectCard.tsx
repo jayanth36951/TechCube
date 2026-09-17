@@ -11,6 +11,7 @@ interface Project {
   description: string;
   image: string;
   tags: string[];
+  background?: string;
 }
 
 interface ProjectCardProps {
@@ -37,10 +38,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   };
 
   const handleProjectClick = () => {
-    const workSection = document.getElementById('work');
-    const workY = workSection ? workSection.getBoundingClientRect().top + window.scrollY : window.scrollY;
+    const cardTop = cardRef.current
+      ? cardRef.current.getBoundingClientRect().top + window.scrollY
+      : window.scrollY;
 
-    sessionStorage.setItem('techcube-return-to-work', String(Math.max(workY, 0)));
+    sessionStorage.setItem('techcube-return-to-work', String(Math.max(cardTop, 0)));
   };
 
   return (
@@ -50,7 +52,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleProjectClick}
-      className="group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-violet/40 transition-all duration-500 cursor-pointer"
+      className={`group relative rounded-2xl overflow-hidden border border-white/10 hover:border-violet/40 transition-all duration-500 cursor-pointer ${project.background || 'bg-white/5'}`}
     >
       <div
         className="w-full h-64 md:h-56 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
