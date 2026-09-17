@@ -84,7 +84,7 @@ const Navigation = () => {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation menu"
-        className={`fixed inset-0 z-40 bg-primary/98 backdrop-blur-xl flex items-center justify-center transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 flex items-center justify-center bg-primary/80 backdrop-blur-md transition-all duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={(event) => {
@@ -93,17 +93,19 @@ const Navigation = () => {
           }
         }}
       >
-        <div className="flex flex-col items-center gap-8 text-4xl font-display font-bold">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="text-cream/80 hover:text-cream transition-colors duration-300"
-              onClick={closeMenu}
-            >
-              {link}
-            </a>
-          ))}
+        <div className="w-[82vw] max-w-md rounded-3xl border border-white/10 bg-primary/90 p-8 shadow-2xl shadow-violet/10">
+          <div className="flex flex-col items-center gap-6 font-display text-2xl font-bold">
+            {navLinks.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className="w-full rounded-full border border-white/5 bg-white/[0.02] px-4 py-3 text-center text-cream/80 transition-all duration-300 hover:border-violet/40 hover:bg-violet/10 hover:text-cream"
+                onClick={closeMenu}
+              >
+                {link}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </>
