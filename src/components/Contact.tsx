@@ -51,7 +51,7 @@ const Contact = () => {
         <div ref={ctaRef} className="mt-12 flex flex-col items-center gap-8">
           <a
             ref={buttonRef}
-            href="mailto:techcube333@gmail.com"
+            href="mailto:techxcube333@gmail.com"
             onMouseEnter={handleHover}
             onMouseLeave={handleLeave}
             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-violet px-10 py-5 text-lg font-medium text-primary transition-all hover:shadow-2xl hover:shadow-violet/25"
